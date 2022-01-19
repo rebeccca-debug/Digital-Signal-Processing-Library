@@ -4,7 +4,7 @@
 
 #define SIG_LENGTH 320
 
-extern double Input_Signal_f32_1kHz_15kHz[SIG_LENGTH];
+extern double Input_Signal_f32_1kHz_15kHz[SIG_LENGTH];          // Input signal data
 double calc_signal_mean(double *sig_src_arr, int sig_length);
 double calc_signal_variance(double *sig_src_arr, double sig_mean, int sig_length);
 double calc_signal_std(double sig_variance);
