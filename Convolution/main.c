@@ -63,7 +63,7 @@ int main()
 }
 
 /**
- * @brief Convolve the impulse response and signal arrays.
+ * @brief Convolve the impulse response and signal arrays. Equation: y[i] = (M-1)^Σ_(j=0)(h[j]*[i-j])
  * @param sig_src_arr pointer to the source signal array
  * @param sig_dest_arr pointer to the destination signal array
  * @param imp_response_arr pointer to the impulse response array
@@ -79,6 +79,8 @@ void convolution( double *sig_src_arr,
                  )
 {
     int i,j;
+    
+    //Initialize destination array with 0's
     for(i=0;i<sig_src_length+imp_response_length;i++)
     {
         sig_dest_arr[i] =0;
