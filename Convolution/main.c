@@ -16,7 +16,12 @@ void convolution( double *sig_src_arr,
                   int imp_response_length
                  );
 
-
+/**
+ * Parse the input signal, output signal, and impulse response from their respective file.
+ * Convolve, or multiply the arrays together, to produce another array of the same dimensionality.
+ * Each output signal is a scaled and shifted version of the impulse response.
+ * Print out all of the arrays.
+*/
 int main()
 {
     FILE *input_sig_fptr, *imp_rsp_fptr,*output_sig_fptr;
@@ -32,11 +37,14 @@ int main()
     imp_rsp_fptr   = fopen ("impulse_response.dat","w");
     output_sig_fptr = fopen("output_signal.dat","w");
 
+    // Print the input signal
     for(int i=0;i<SIG_LENGTH;i++)
     {
          fprintf(input_sig_fptr,"\n%f",InputSignal_f32_1kHz_15kHz[i]);
     }
     fclose(input_sig_fptr);
+        
+    // Print the impulse response
     for(int i=0;i<IMP_RSP_LENGTH;i++)
     {
          fprintf(imp_rsp_fptr,"\n%f",Impulse_response[i]);
@@ -44,17 +52,25 @@ int main()
     }
     fclose(imp_rsp_fptr);
 
-     for(int i=0;i<SIG_LENGTH+IMP_RSP_LENGTH;i++)
-     {
-
+    // Print the output signal
+    for(int i=0;i<SIG_LENGTH+IMP_RSP_LENGTH;i++)
+    {
          fprintf(output_sig_fptr,"\n%f",Output_signal[i]);
-     }
-     fclose(output_sig_fptr);
+    }
+    fclose(output_sig_fptr);
 
     return 0;
 }
 
-
+/**
+ * @brief Convolve the impulse response and signal arrays.
+ * @param sig_src_arr pointer to the source signal array
+ * @param sig_dest_arr pointer to the destination signal array
+ * @param imp_response_arr pointer to the impulse response array
+ * @param sig_src_length integer representing the length of the source signal array
+ * @param imp_response_length integer representing impulse response length
+ * @return void
+*/
 void convolution( double *sig_src_arr,
                   double *sig_dest_arr,
                   double *imp_response_arr,
